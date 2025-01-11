@@ -46,14 +46,14 @@
 ```bash
 # 1. 克隆專案
 git clone https://github.com/your-repo/book-management.git
-cd book-management
+cd book
 
 # 2. 安裝後端依賴
-cd server
+cd backend
 npm install
 
 # 3. 安裝前端依賴
-cd ../client
+cd frontend
 npm install
 
 # 4. 啟動 MongoDB 伺服器
@@ -61,12 +61,127 @@ npm install
 # 雲端：更新 .env 文件中的 MONGO_URI 為雲端連接字串。
 
 # 5. 啟動後端伺服器
-cd ../server
+cd backend
 npm run dev
 
 # 6. 啟動前端伺服器
-cd ../client
+cd frontend
 npm start
 
 # 7. 在瀏覽器打開
 # http://localhost:3000
+
+### 安裝步驟 API 規格說明文件
+
+### 基本資訊
+- **基礎 URL**: `http://localhost:5000/api`
+- **資料格式**: JSON
+
+```
+
+---
+
+### 路由與操作
+
+### 1. 新增書籍
+- **路由**: `POST /books`
+- **參數**: 
+  - **請求體**:
+    ```json
+    {
+      "title": "string",
+      "author": "string",
+      "publishedYear": "number",
+      "isbn": "string",
+      "description": "string"
+    }
+    ```
+- **回應範例**:
+    ```json
+    {
+      "_id": "string",
+      "title": "string",
+      "author": "string",
+      "publishedYear": "number",
+      "isbn": "string",
+      "description": "string"
+    }
+    ```
+
+---
+
+#### 2. 獲取所有書籍
+- **路由**: `GET /books`
+- **參數**: 無
+- **回應範例**:
+    ```json
+    [
+      {
+        "_id": "string",
+        "title": "string",
+        "author": "string",
+        "publishedYear": "number",
+        "isbn": "string",
+        "description": "string"
+      }
+    ]
+    ```
+
+---
+
+#### 3. 獲取特定書籍
+- **路由**: `GET /books/:id`
+- **參數**:
+  - **URL 參數**: `id` - 書籍的唯一識別碼
+- **回應範例**:
+    ```json
+    {
+      "_id": "string",
+      "title": "string",
+      "author": "string",
+      "publishedYear": "number",
+      "isbn": "string",
+      "description": "string"
+    }
+    ```
+
+---
+
+#### 4. 更新書籍
+- **路由**: `PUT /books/:id`
+- **參數**:
+  - **URL 參數**: `id` - 書籍的唯一識別碼
+  - **請求體**:
+    ```json
+    {
+      "title": "string",
+      "author": "string",
+      "publishedYear": "number",
+      "isbn": "string",
+      "description": "string"
+    }
+    ```
+- **回應範例**:
+    ```json
+    {
+      "_id": "string",
+      "title": "string",
+      "author": "string",
+      "publishedYear": "number",
+      "isbn": "string",
+      "description": "string"
+    }
+    ```
+
+---
+
+#### 5. 刪除書籍
+- **路由**: `DELETE /books/:id`
+- **參數**:
+  - **URL 參數**: `id` - 書籍的唯一識別碼
+- **回應範例**:
+    ```json
+    {
+      "message": "Book deleted successfully."
+    }
+    ```
